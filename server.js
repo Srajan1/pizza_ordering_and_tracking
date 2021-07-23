@@ -7,7 +7,9 @@ const ejs = require("ejs");
 const path = require("path");
 const expressLayout = require("express-ejs-layouts");
 const mongoose = require("mongoose");
-
+const session = require('express-session')
+const flash = require('express-flash')
+const MongoDbStore = require('connect-mongo')(session);
 // DB connect
 const url = process.env.DB_URL;
 mongoose.connect(url, {
@@ -21,7 +23,23 @@ connection.once('open', () => {
     console.log('connected to db');
 }).catch(err => {
     console.log(err);
+});
+// Session store
+let mongoStore = new MongoDbStore({
+  mongooseConnection: connection,
+  collection: 'sessions'
 })
+
+// sessions
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true,
+  store: mongoStore,
+  cookie: {maxAge: 1000 * 60 * 60 * 24}
+}))
+
+app.use(flash())
 // Assets
 app.use(express.static("public"));
 
