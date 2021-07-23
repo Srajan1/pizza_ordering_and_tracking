@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const dotenv = require('dotenv');
+dotenv.config();
 const PORT = process.env.PORT || 3000;
 const ejs = require("ejs");
 const path = require("path");
@@ -7,7 +9,7 @@ const expressLayout = require("express-ejs-layouts");
 const mongoose = require("mongoose");
 
 // DB connect
-const url = "mongodb://localhost/pizza_shop";
+const url = process.env.DB_URL;
 mongoose.connect(url, {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -16,7 +18,7 @@ mongoose.connect(url, {
 });
 const connection = mongoose.connection;
 connection.once('open', () => {
-    console.log('mongoose connected');
+    console.log('connected to db');
 }).catch(err => {
     console.log(err);
 })
