@@ -10,6 +10,7 @@ const mongoose = require("mongoose");
 const session = require('express-session')
 const flash = require('express-flash')
 const MongoDbStore = require('connect-mongo')(session);
+const passport = require('passport');
 // DB connect
 const url = process.env.DB_URL;
 mongoose.connect(url, {
@@ -24,6 +25,9 @@ connection.once('open', () => {
 }).catch(err => {
     console.log(err);
 });
+
+
+
 // Session store
 let mongoStore = new MongoDbStore({
   mongooseConnection: connection,
@@ -39,6 +43,12 @@ app.use(session({
   cookie: {maxAge: 1000 * 60 * 60 * 24}
 }))
 
+// passport config
+const passportInit = require('./app/config/passport')
+passportInit(passport);
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(flash())
 // Assets
 app.use(express.static("public"));
@@ -48,6 +58,7 @@ app.use(express.urlencoded({extended: false}))
 // Global middleware
 app.use((req, res, next) => {
   res.locals.session = req.session;
+  res.locals.user = req.user;
   next();
 })
 // Setting template engine
