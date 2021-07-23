@@ -1,10 +1,23 @@
-const axios = require('axios')
+const axios = require('axios');
+const noty = require('noty'); 
 let addToCart = document.querySelectorAll('.add-to-cart');
 let cardCounter = document.querySelector('#card-counter')
 function updateCart(pizza){
     axios.post('/update-cart', pizza).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         cardCounter.innerText = res.data.totalQty;
+        new noty({
+            type: 'success',
+            timeout: 1000,
+            text: "Added to cart"
+          }).show();
+          
+    }).catch((err) => {
+        new noty({
+            type: 'error',
+            timeout: 1000,
+            text: "Something went wrong"
+          }).show();
     })
 }
 
