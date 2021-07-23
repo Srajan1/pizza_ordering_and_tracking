@@ -15,7 +15,7 @@
     <section class="menu container mx-auto py-8">
         <h1 class="txt-xl font-bold mb-8">App Pizzas</h1>
         <div class="grid grid-cols-4 col-gap-12 row-gap-16">
-            <!-- <% console.log(pizzas[0]) %> -->
+            
             <%pizzas.forEach(function(pizza){ %>
                 
                 <div class="w-64">
@@ -25,7 +25,7 @@
                         <span class="py-1 px-4 rounded-full uppercase text-xs"><%= pizza.size %></span>
                         <div class="flex items-center justify-around">
                             <span class="font-bold ">₹<%= pizza.price %></span>
-                            <button class="add-to-cart py-1 px-6 rounded-full ">
+                            <button data-pizza="<%= JSON.stringify(pizza) %>" class="add-to-cart py-1 px-6 rounded-full ">
                                 <span>+</span>
                                 <span>Add</span>
                             </button>
