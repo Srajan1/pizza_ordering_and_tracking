@@ -1,32 +1,37 @@
 <section class="cart py-16">
-    <!-- <div class="empty-cart py-16">
+    <%if(!session.cart){%>
+    <div class="empty-cart py-16">
         <div class="container mx-auto text-center">
             <h1 class="text-3xl font-bold mb-2">Cart empty 🙄🙄</h1>
             <p>Go to the home page to order a pizza</p>
             <img class="w-2/5 mx-auto" src="/img/empty-cart.png" alt="">
             <a href="/" class="inline-block px-6 py-2 rounded-full btn-primary mt-12">Go back</a>
         </div>
-    </div> -->
+    </div>
+    <%}else{%>
     <div class="order container mx-auto w-1/2  border-b border-gray-300 pb-4 ">
         <div class="flex items-center border-b border-gray-300 pb-4 ">
             <img src="/img/cart-black.png" alt="">
             <h1 class="font-bold ml-4 text-2xl ">Order summary</h1>
         </div>
         <div class="pizza-list">
+            <% for(let pizza of Object.values(session.cart.items)){ %>
+                <% console.log(pizza.item); %>
             <div class="flex items-center my-8">
-                <img src="/img/pizza.png" class="w-24" alt="">
+                <img src="/img/<%=pizza.item.image%>" class="w-24" alt="">
                 <div class="ml-4 flex-1">
-                    <h1>Marinara</h1>
-                    <span>Medium</span>
+                    <h1><%=pizza.item.name%></h1>
+                    <span><%=pizza.item.size%></span>
                 </div>
-                <span class="flex-1">1 PCs</span>
-                <span class="font-bold text-lg">₹250</span>
+                <span class="flex-1"><%=pizza.qty%> pcs</span>
+                <span class="font-bold text-lg"> <%=pizza.qty%> x ₹<%=pizza.item.price%> = ₹<%=pizza.qty * pizza.item.price%></span>
             </div>
+            <% } %>
         </div>
         <div class="text-right py-4">
             <div>
                 <span class="lext-lg font-bold">Total amount</span>
-                <span class="amount text-2xl font-bold ml-2">₹250</span>
+                <span class="amount text-2xl font-bold ml-2"> <%=session.cart.totalPrice%> </span>
             </div>
             <div>
                 <form action="" class="mt-12">
@@ -39,5 +44,6 @@
             <a href="" class="inline-block cursor-pointer px-6 py-2 rounded-full text-white font-bold mt-6 btn-primary">Login</a>
         </div>
     </div>
+    <%}%>
 
 </section>
