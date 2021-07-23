@@ -19,14 +19,30 @@ section.main-section {
   background: #f8f8f8;
 }
 
-.add-to-cart {
+.add-to-cart,
+.btn-primary {
   border: 2px solid #FE5F1E;
   color: #FE5F1E;
 }
 
-.add-to-cart:hover {
+.add-to-cart:hover,
+.btn-primary:hover {
   background: #FE5F1E;
   border-color: #fff;
   color: #fff;
+}
+
+section.cart,
+section.login {
+  background: #f8f8f8;
+}
+
+section.cart a,
+section.login a {
+  color: #FE5F1E;
+}
+
+.amount {
+  color: #FE5F1E;
 }
 

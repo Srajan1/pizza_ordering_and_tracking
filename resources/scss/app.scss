@@ -23,7 +23,7 @@ section.main-section{
     background: $secondary;
 }
 
-.add-to-cart{
+.add-to-cart, .btn-primary{
     border: 2px solid $primary;
     color: $primary;
     &:hover{
@@ -31,4 +31,15 @@ section.main-section{
         border-color: $pure;
         color: $pure;
     }
+}
+
+section.cart, section.login{
+    background: $secondary;
+    a{
+        color: $primary;
+    }
+}
+
+.amount{
+    color: $primary;
 }
