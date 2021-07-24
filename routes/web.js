@@ -3,7 +3,9 @@ const authController = require("../app/http/controllers/authController");
 const cartController = require("../app/http/controllers/customers/cartControllers");
 const guest = require('../app/http/middlewares/guest')
 const auth = require('../app/http/middlewares/auth')
+const isAdmin = require('../app/http/middlewares/isAdmin')
 const orderController = require('../app/http/controllers/customers/orderController')
+const AdminorderController = require('../app/http/controllers/admin/orderController')
 
 function initRoutes(app) {
 
@@ -21,6 +23,9 @@ function initRoutes(app) {
   // Customer route
   app.post('/orders', auth, orderController().store);
   app.get('/customer/orders', auth, orderController().index)
+
+  // admin route
+  app.get('/admin/orders', isAdmin, AdminorderController().index)
 }
 
 module.exports = initRoutes;

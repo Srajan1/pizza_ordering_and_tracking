@@ -1,5 +1,6 @@
 const axios = require('axios');
 const noty = require('noty'); 
+const initAdmin = require('./admin')
 let addToCart = document.querySelectorAll('.add-to-cart');
 let cardCounter = document.querySelector('#card-counter')
 function updateCart(pizza){
@@ -27,3 +28,5 @@ addToCart.forEach((btn) => {
         updateCart(pizza);
     })
 })
+
+initAdmin();
