@@ -23,6 +23,14 @@ function orderController() {
             const orders = await Order.find({customerId: req.user._id}, null, {sort: {'createdAt': -1}});
             res.render('customer/orders', {orders, moment})
             console.log(orders);
+        },
+        async show(req, res){
+            console.log('here');
+            const order = await Order.findById(req.params.id)
+            // check if the user who placed the order is the same as one who is fetching the data
+            if(req.user._id.toString() === order.customerId.toString())
+            res.render('customer/singleOrder', {order});
+            else res.redirect('/customer/orders')
         }
     }
 }

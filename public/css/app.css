@@ -963,13 +963,19 @@ section.main-section {
 }
 
 section.cart,
-section.login {
+section.login,
+section.status {
   background: #f8f8f8;
 }
 
 section.cart a,
-section.login a {
+section.login a,
+section.status a {
   color: #FE5F1E;
+}
+
+.status-box {
+  padding: 60px 0 60px 0;
 }
 
 .amount {
@@ -977,6 +983,10 @@ section.login a {
 }
 
 a.link {
+  color: #FE5F1E;
+}
+
+.ongoing {
   color: #FE5F1E;
 }
 

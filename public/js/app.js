@@ -26912,7 +26912,30 @@ addToCart.forEach(function (btn) {
     updateCart(pizza);
   });
 });
-initAdmin();
+initAdmin(); // Changing order status
+
+var statuses = document.querySelectorAll('.status_line');
+var order = document.querySelector('#hiddenInput') ? document.querySelector('#hiddenInput').value : null;
+order = JSON.parse(order); // console.log(order);
+
+function updateStatus(order) {
+  // console.log(statuses);
+  var stepCompleted = true;
+  statuses.forEach(function (status) {
+    var dataProp = status.dataset.status;
+
+    if (dataProp === order.status) {
+      stepCompleted = false;
+      status.classList.add('ongoing');
+    } else if (stepCompleted) {
+      status.classList.add('text-gray-500');
+      status.classList.add('line-through');
+    } // console.log(status.dataset.status);
+
+  });
+}
+
+updateStatus(order);
 
 /***/ }),
 

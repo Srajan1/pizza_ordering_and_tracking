@@ -38,11 +38,15 @@ section.main-section{
     }
 }
 
-section.cart, section.login{
+section.cart, section.login, section.status{
     background: $secondary;
     a{
         color: $primary;
     }
+}
+
+.status-box{
+    padding: 60px 0 60px 0;
 }
 
 .amount{
@@ -50,5 +54,9 @@ section.cart, section.login{
 }
 
 a.link{
+    color: $primary;
+}
+
+.ongoing{
     color: $primary;
 }

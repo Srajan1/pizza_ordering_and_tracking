@@ -30,3 +30,31 @@ addToCart.forEach((btn) => {
 })
 
 initAdmin();
+
+// Changing order status
+let statuses = document.querySelectorAll('.status_line')
+let order = document.querySelector('#hiddenInput') ? document.querySelector('#hiddenInput').value : null;
+order = JSON.parse(order)
+// console.log(order);
+
+function updateStatus(order){
+    // console.log(statuses);
+    let stepCompleted = true;
+    statuses.forEach((status) => {
+        let dataProp = status.dataset.status;
+        if(dataProp === order.status){
+            stepCompleted = false;
+            status.classList.add('ongoing');
+        }
+        else if(stepCompleted){
+            
+            status.classList.add('text-gray-500');
+            status.classList.add('line-through');
+        }
+        
+        // console.log(status.dataset.status);
+
+    })
+}
+
+updateStatus(order)
