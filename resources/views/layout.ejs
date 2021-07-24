@@ -23,9 +23,9 @@
                 <li class="ml-6"> <a href="/">Offers</a></li>
                 <%if(user){%>
                 <li class="ml-6"> 
-                    <form id='logout' action="/logout" method="POST">
-                        <a onclick="document.querySelector('#logout').submit()" href="/">Logout</a>
-                    </form>
+                    <!-- <form id='logout' action="/logout" method="GET"> -->
+                        <a  href="/logout">Logout</a>
+                    <!-- </form> -->
                 </li>
                 <%}else {%>
                 <li class="ml-6"> <a href="/register">Register</a></li>
