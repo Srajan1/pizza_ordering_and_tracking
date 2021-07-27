@@ -26922,6 +26922,7 @@ function updateStatus(order) {
   // console.log(statuses);
   var stepCompleted = true;
   statuses.forEach(function (status) {
+    console.log(order.status);
     var dataProp = status.dataset.status;
 
     if (dataProp === order.status) {
