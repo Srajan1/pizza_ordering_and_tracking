@@ -19,3 +19,7 @@
 ## Tracking the order
 ### Each order od is a hyperlink which can be used to track individual orders.
  ![Track Order](./readmeImages/status.png)
+
+## Admin side controls
+### Admin has the authority to view all the orders and update their status.
+ ![admin dashboard](./readmeImages/admin.png)
